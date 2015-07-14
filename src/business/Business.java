@@ -37,4 +37,13 @@ public class Business {
 	public List<Resultado> consulta18() throws SQLException{
 		return dao.consulta18();
 	}
+	public List<Resultado> consulta20() throws SQLException{
+		return dao.consulta20();
+	}
+	public List<Resultado> consulta25() throws SQLException{
+		return dao.consulta25();
+	}
+	public List<Resultado> consulta28() throws SQLException{
+		return dao.consulta28();
+	}
 }

@@ -170,5 +170,103 @@ public class Dao {
 
 		return listaResultados;
 	}
+	public List<Resultado> consulta25() throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Resultado resultado = new Resultado();
+		List<Resultado> listaResultados = new ArrayList<Resultado>();
+
+		try {
+			connection = bd.getConnection();
+			statement = connection
+					.prepareStatement("select ssn, pnome, sum(horas) as horas_trabalhadas from empregado, trabalha_em where essn=ssn group by ssn having horas_trabalhadas > 35;");
+			
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				resultado.setNome(resultSet.getString("pnome"));
+				resultado.setSsn(resultSet.getString("ssn"));
+				resultado.setHoras(resultSet.getInt("horas_trabalhadas"));
+				listaResultados.add(resultado);
+				
+				resultado = new Resultado();
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resultSet.close();
+			bd.fecharConecaoMySQL();
+		}
+
+		return listaResultados;
+	}
+	public List<Resultado> consulta20() throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Resultado resultado = new Resultado();
+		List<Resultado> listaResultados = new ArrayList<Resultado>();
+
+		try {
+			connection = bd.getConnection();
+			statement = connection
+					.prepareStatement("select distinct ssn, pnome from empregado, dependente where essn = ssn and (parentesco = 'FILHO' or parentesco = 'FILHA')");
+			
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				resultado.setNome(resultSet.getString("pnome"));
+				resultado.setSsn(resultSet.getString("ssn"));
+				listaResultados.add(resultado);
+				
+				resultado = new Resultado();
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resultSet.close();
+			bd.fecharConecaoMySQL();
+		}
+
+		return listaResultados;
+	}
+	public List<Resultado> consulta28() throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Resultado resultado = new Resultado();
+		List<Resultado> listaResultados = new ArrayList<Resultado>();
+
+		try {
+			connection = bd.getConnection();
+			statement = connection
+					.prepareStatement("select pno, pjnome, avg(horas) as media from trabalha_em, projeto where pno=pnumero group by pno");
+			
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				resultado.setNome(resultSet.getString("pjnome"));
+				resultado.setHoras(resultSet.getDouble("media"));
+				resultado.setNumero(resultSet.getInt("pno"));
+				listaResultados.add(resultado);
+				
+				resultado = new Resultado();
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resultSet.close();
+			bd.fecharConecaoMySQL();
+		}
+
+		return listaResultados;
+	}
 	
 }

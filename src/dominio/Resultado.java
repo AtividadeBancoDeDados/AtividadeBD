@@ -4,7 +4,8 @@ public class Resultado {
 	private String nome;
 	private String ssn;
 	private int salario;
-	private int horas;
+	private double horas;
+	private int numero;
 	public String getNome() {
 		return nome;
 	}
@@ -23,11 +24,17 @@ public class Resultado {
 	public void setSalario(int salario) {
 		this.salario = salario;
 	}
-	public int getHoras() {
+	public double getHoras() {
 		return this.horas;
 	}
-	public void setHoras(int horas) {
+	public void setHoras(double horas) {
 		this.horas = horas;
+	}
+	public int getNumero() {
+		return this.numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 	
 	

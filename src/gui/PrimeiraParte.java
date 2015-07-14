@@ -140,14 +140,65 @@ public class PrimeiraParte extends JFrame {
 		contentPane.add(btnConsulta_2);
 		
 		JButton btnConsulta_3 = new JButton("Consulta 20");
+		btnConsulta_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					List<Resultado> resultado =  business.consulta20();
+					String textResultado = "SSN - Nome \n \n";
+					for (Resultado resultado2 : resultado) {
+						textResultado = textResultado + resultado2.getNome() + " - "+ resultado2.getSsn()+" \n";
+						
+					}
+					textArea.setText(textResultado);
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnConsulta_3.setBounds(225, 45, 151, 23);
 		contentPane.add(btnConsulta_3);
 		
 		JButton btnConsulta_4 = new JButton("Consulta 25");
+		btnConsulta_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					List<Resultado> resultado =  business.consulta25();
+					String textResultado = "SSN - Nome - Horas trabalhadas \n \n";
+					for (Resultado resultado2 : resultado) {
+						textResultado = textResultado + resultado2.getNome() + " - "+ resultado2.getSsn()+ " - "+resultado2.getHoras()+ "\n";
+						
+					}
+					textArea.setText(textResultado);
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnConsulta_4.setBounds(386, 45, 152, 23);
 		contentPane.add(btnConsulta_4);
 		
 		JButton btnConsulta_5 = new JButton("Consulta 28");
+		btnConsulta_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					List<Resultado> resultado =  business.consulta28();
+					String textResultado = "Número do Projeto - Nome do Projeto - Horas trabalhadas \n \n";
+					for (Resultado resultado2 : resultado) {
+						textResultado = textResultado + resultado2.getNumero() + " - "+ resultado2.getNome()+ " - "+resultado2.getHoras()+ "\n";
+						
+					}
+					textArea.setText(textResultado);
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnConsulta_5.setBounds(72, 90, 143, 23);
 		contentPane.add(btnConsulta_5);
 		
