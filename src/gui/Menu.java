@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Menu extends JFrame {
 
@@ -68,6 +70,13 @@ public class Menu extends JFrame {
 		contentPane.add(lblEdvanJa);
 		
 		JButton btnResultadosDa = new JButton("Resultados da 1\u00AA Parte \r\n / Consultas SQL");
+		btnResultadosDa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PrimeiraParte tela = new PrimeiraParte();
+				tela.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnResultadosDa.setBounds(10, 145, 264, 125);
 		contentPane.add(btnResultadosDa);
 		

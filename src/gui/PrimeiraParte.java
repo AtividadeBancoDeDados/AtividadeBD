@@ -52,7 +52,7 @@ public class PrimeiraParte extends JFrame {
 		contentPane.setLayout(null);
 		
 		textArea = new JTextArea();
-		textArea.setBounds(10, 124, 520, 250);
+		textArea.setBounds(10, 124, 520, 226);
 		contentPane.add(textArea);
 		
 		JButton btnNewButton = new JButton("Consulta 4");
@@ -201,6 +201,18 @@ public class PrimeiraParte extends JFrame {
 		});
 		btnConsulta_5.setBounds(72, 90, 143, 23);
 		contentPane.add(btnConsulta_5);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Menu tela = new Menu();
+				tela.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
+		btnVoltar.setBounds(183, 361, 143, 23);
+		contentPane.add(btnVoltar);
 		
 	}
 }
