@@ -1,0 +1,3 @@
+Main-Class: gui.Menu
+Name: gui/Menu.class
+Java-Bean: True
