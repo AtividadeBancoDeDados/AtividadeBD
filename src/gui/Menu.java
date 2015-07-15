@@ -81,6 +81,13 @@ public class Menu extends JFrame {
 		contentPane.add(btnResultadosDa);
 		
 		JButton btnNewButton = new JButton("2\u00AA Parte");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuParte2 tela = new MenuParte2();
+				tela.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnNewButton.setBounds(284, 147, 230, 123);
 		contentPane.add(btnNewButton);
 	}
