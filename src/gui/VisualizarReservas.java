@@ -1,22 +1,28 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
+
+import business.Business2;
+import dominio.Cadastro;
+import dominio.Resultado;
 
 public class VisualizarReservas extends JFrame {
 
 	private JPanel contentPane;
-
+	Business2 business = Business2.getInstancia();
+	private JTextArea textArea;
 	/**
 	 * Launch the application.
 	 */
@@ -52,8 +58,28 @@ public class VisualizarReservas extends JFrame {
 		JButton btnNewButton = new JButton("Visualizar usu\u00E1rios com reservas");
 		btnNewButton.setBounds(10, 36, 458, 23);
 		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					List<Cadastro> resultado =  business.usuariosReserva();
+					String textResultado = "Usuários com reserva: \n \n";
+					for (Cadastro resultado2 : resultado) {
+						textResultado = textResultado + resultado2.getNome() + "\n";
+						
+					}
+					textArea.setText(textResultado);
+					
+				} catch (SQLException e1) {
+					textArea.setText("Não possui resultados");
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setBounds(10, 70, 458, 197);
 		contentPane.add(textArea);
 		

@@ -175,11 +175,42 @@ public class Dao2 {
 		try {
 			connection = bd.getConnection();
 			statement = connection
-					.prepareStatement("select u.NomeUsu from usuario as u where u.CodUsu in (select CodUsu from reserva);");
-			//               ^^^^^^^^ Edvan, muda esse Select pra funcionar com a View que criasse. Ok? ^^^^^^^^
+					.prepareStatement("select * from usuarios_com_reserva");
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				resultado.setNome(resultSet.getString("NomeUsu"));
+				listaResultados.add(resultado);
+				
+				resultado = new Cadastro();
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			resultSet.close();
+			bd.fecharConecaoMySQL();
+		}
+
+		return listaResultados;
+	}
+	
+	public List<Cadastro> emprestimos() throws SQLException {
+
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Cadastro resultado = new Cadastro();
+		List<Cadastro> listaResultados = new ArrayList<Cadastro>();
+
+		try {
+			connection = bd.getConnection();
+			statement = connection
+					.prepareStatement("select * from emprestimos");
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				resultado.setNome(resultSet.getString("NomeUsu"));
+				resultado.setNome2(resultSet.getString("TituloObra"));
 				listaResultados.add(resultado);
 				
 				resultado = new Cadastro();

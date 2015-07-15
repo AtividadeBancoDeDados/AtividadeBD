@@ -44,4 +44,10 @@ public class Business2 {
 	public void deletarBiblioteca(Cadastro cadastro) throws SQLException {
 		dao.deletarBiblioteca(cadastro);
 	}
+	public List<Cadastro> usuariosReserva() throws SQLException {
+		return dao.usuariosReserva();
+	}
+	public List<Cadastro> emprestimos() throws SQLException {
+		return dao.emprestimos();
+	}
 }
